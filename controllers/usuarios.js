@@ -10,13 +10,22 @@ const { generarJWT } = require('../helpers/jwt');
 */
 const getUser = async(req, res) =>{
 
-    const usuarios = await Usuario.find();
-    // const usuarios = await Usuario.find({}, 'nombre email'); //Para filtrar
+    const view = Number(req.query.view) || 0; //si indica la cantidad a paginar
+
+    //Para que se ejecuten en paralelo
+    const [usuarios, total] = await Promise.all([
+        Usuario.find()
+                    .skip( view ) //para que salte los primeros que se indican
+                    .limit( 5 ),  //por defecto en 5
+
+        Usuario.count()
+    ])
 
     res.json({
         ok : true,
         usuarios,
-        uid: req.uid //uid del que hizo la petición
+        total
+        //uid: req.uid //uid del que hizo la petición
     });
 };
 
