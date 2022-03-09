@@ -1,4 +1,5 @@
 const { response } = require('express');
+const hospital = require('../models/hospital');
 
 const Hospital = require('../models/hospital');
 
@@ -49,18 +50,78 @@ const postHospitales = async(req, res = response) =>{
     };
 }
 
-const updateHospitales = (req, res = response) =>{
-    res.json({
-        ok: true,
-        msg: 'update TODO OK'
-    })
+const updateHospitales = async(req, res = response) =>{
+
+    const idHospital = req.params.uid;
+    const uidUsuario = req.uid
+
+    try {
+
+        const hostpitalDB = await Hospital.findById ( idHospital );
+
+        if( !hostpitalDB ){
+            return res.status(404).json({
+                ok: false,
+                msg: 'El hospital no existe'
+            })
+        }
+
+        const cambiosHospitales = {
+            ...req.body,
+            usuario: uidUsuario
+        };
+
+        const hospitalUpdate = await Hospital.findByIdAndUpdate( idHospital, cambiosHospitales, { new: true });
+
+        res.json({
+            ok: true,
+            msg: 'update TODO OK',
+            hospitalUpdate
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Error update'
+        });
+    }
+
 }
 
-const deleteHospitales = (req, res = response) =>{
-    res.json({
-        ok: true,
-        msg: 'delete TODO OK'
-    })
+const deleteHospitales = async(req, res = response) =>{
+    const uid = req.params.uid;
+
+    const idHospital = req.params.uid;
+    const uidUsuario = req.uid
+
+    try{
+        //Busca el usuario por su id
+        const hospitalDB = await Hospital.findById( idHospital );
+
+        if(!hospitalDB){
+            return res.status(404).json({
+                ok: false,
+                uid,
+                msg: 'No existe ese hospital',
+            })
+        };
+
+        await Hospital.findByIdAndDelete( idHospital )
+
+        res.json({
+            ok: true,
+            msg: 'Hospital eliminado',
+            idHospital
+        })
+
+    }catch{
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error delete hospital'
+        });
+    }
 }
 
 module.exports = { getHospitales, postHospitales, updateHospitales, deleteHospitales }
