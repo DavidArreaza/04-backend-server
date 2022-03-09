@@ -17,6 +17,9 @@ app.use( express.json() );
 // Base de Datos
 dbConnection(); 
 
+// Directorio público
+app.use(express.static('public'));
+
 // Rutas (en postman donde hacer las peticiones)
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/login', require('./routes/auth'));
