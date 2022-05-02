@@ -102,7 +102,7 @@ const updateUser = async(req, res = response) =>{
         // Actualizaciones
         const {password, google, email, ...datos} = req.body; //lo saca de la respuesta
 
-        if(usuarioDB.email !== email){
+        if( usuarioDB.email !== email ){
             const existEmail = await Usuario.findOne({email})
             if( existEmail ){
                 return res.status(400).json({
@@ -112,7 +112,14 @@ const updateUser = async(req, res = response) =>{
             }
         }
 
-        datos.email = email;
+        if( !usuarioDB.google ){
+            datos.email = email;
+        }else if ( usuarioDB.email !== email ){
+            return res.status(400).json({
+                ok: false,
+                msg: 'El email de google no puede ser editado'
+            });urn 
+        }        
 
         const userUpdate = await Usuario.findByIdAndUpdate(uid, datos, {new: true}); //Para que devuelva el nuevo de primeras        
 
