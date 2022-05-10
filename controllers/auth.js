@@ -3,6 +3,7 @@ const Usuario = require('../models/usuario');
 const bcrypt =  require('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
 const { googleVerify } = require('../helpers/google-verify');
+const { getMenu } = require('../helpers/menu');
 
 /**
  * Login usuarios sin google
@@ -40,7 +41,8 @@ const login = async(req, res = response) =>{
 
         res.json({
             ok: true,
-            token
+            token,
+            menu : getMenu(usuarioLoggeado.rol)
         })
 
     }catch(error){
@@ -95,7 +97,8 @@ const googleSignIn = async( req, res = response ) => {
         res.json({
             ok: true,
             msg: 'Google SignIn funciona',
-            token
+            token,
+            menu : getMenu( usuraio.rol )
         });
 
     }catch(error){
@@ -123,7 +126,9 @@ const renewToken = async(req, res = response ) =>{
     res.json({
         ok: true,
         token,
-        usuarioDB
+        usuarioDB,
+        menu : getMenu( usuarioDB.rol )
+
     });
 }
 
