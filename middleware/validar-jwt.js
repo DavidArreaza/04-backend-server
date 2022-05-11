@@ -34,9 +34,17 @@ const validarJWT = (req, res, next) => {
     }
 }
 
-const validarAdminRol = async(req, res, next) =>{
+/**
+ * Valida el Rol del usuario y si es él mismo
+ * @param {} req 
+ * @param {*} res 
+ * @param {*} next 
+ * @returns 
+ */
+const validar_AdminRol_MismoUser = async(req, res, next) =>{
 
     const uid = req.uid;
+    const idUpdate = req.params.id;
 
     try {
 
@@ -49,14 +57,14 @@ const validarAdminRol = async(req, res, next) =>{
             })
         }
         
-        if( usuarioDb.rol != 'ADMIN_ROLE' ){
+        if( usuarioDb.rol != 'ADMIN_ROLE' || uid === idUpdate ){
+            next();
+        }else{
             return res.status(403).json({
                 ok: false,
                 msg: 'No tiene autorización'
             })
         }
-
-        next();
 
         
     } catch (error) {
@@ -68,4 +76,4 @@ const validarAdminRol = async(req, res, next) =>{
 
 }
 
-module.exports = { validarJWT, validarAdminRol }
+module.exports = { validarJWT, validar_AdminRol_MismoUser }
