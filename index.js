@@ -1,8 +1,11 @@
 
 //Como si fuera un import
 require('dotenv').config();
+const path = require('path');
+
 const express = require('express');
 const cors = require('cors');
+
 const { dbConnection } = require('./database/config');
 
 //Crear servidor
@@ -28,6 +31,11 @@ app.use('/api/medicos', require('./routes/medicos'));
 app.use('/api/all', require('./routes/searchs'));
 app.use('/api/upload', require('./routes/uploads'));
 
+
+// Controlar rutas en prod
+app.get('*', (req, res) =>{
+    res.sendFile( path.resolve( __dirname, 'public/index.html') );
+});
 
 // Puerto
 app.listen( process.env.PORT, () =>{
