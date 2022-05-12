@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google.signing-client_id" content="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com">
+        <title>Demo Login</title>
+    </head>
+    <body>
+        <h1>Google Sing In</h1>
+
+        <!-- data-callback="http://localhost:3000" -->
+        <div id="g_id_onload"
+            data-client_id="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:3000"
+            data-auto_prompt="false">
+         </div>
+         
+         <!-- data-text="$ {button.text}" -->
+        <div class="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="outline"
+            data-text="sign_in_with"
+            data-size="large"
+            data-logo_alignment="left">
+        </div>
+
+        <!-- <div id="g_id_onload"
+            data-client_id="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse">
+        </div> -->
+
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+        <script>
+            function handleCredentialResponse(response) {
+                    console.log("Encoded JWT ID token: " + response.credential);
+                    //console.log(google.accounts.disableAutoSelect); 
+            }
+
+        </script>
+    </body>
+</html>

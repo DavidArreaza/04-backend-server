@@ -1,47 +1,65 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="google.signing-client_id" content="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com">
-        <title>Demo Login</title>
-    </head>
-    <body>
-        <h1>Google Sing In</h1>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <title>AdminPro</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id" content="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js"></script>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-        <!-- data-callback="http://localhost:3000" -->
-        <div id="g_id_onload"
-            data-client_id="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com"
-            data-callback="handleCredentialResponse"
-            data-context="signin"
-            data-ux_mode="popup"
-            data-login_uri="http://localhost:3000"
-            data-auto_prompt="false">
-         </div>
-         
-         <!-- data-text="$ {button.text}" -->
-        <div class="g_id_signin"
-            data-type="standard"
-            data-shape="pill"
-            data-theme="outline"
-            data-text="sign_in_with"
-            data-size="large"
-            data-logo_alignment="left">
-        </div>
+  <!-- Favicon icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon.png">
 
-        <!-- <div id="g_id_onload"
-            data-client_id="597752500350-rbgsh2li8ujs7almqbko67pvbs3ja1qr.apps.googleusercontent.com"
-            data-callback="handleCredentialResponse">
-        </div> -->
+  <!-- Bootstrap Core CSS -->
+  <style>@media print{*,::after,::before{text-shadow:none!important;box-shadow:none!important;}p{orphans:3;widows:3;}}html{box-sizing:border-box;font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:transparent;}*,::after,::before{box-sizing:inherit;}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;}p{margin-top:0;margin-bottom:1rem;}</style><link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css"></noscript>
+  <!-- Custom CSS -->
+  <style>@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");@import url(../scss/icons/font-awesome/css/font-awesome.min.css);@import url(../scss/icons/simple-line-icons/css/simple-line-icons.css);@import url(../scss/icons/weather-icons/css/weather-icons.min.css);@import url(../scss/icons/linea-icons/linea.css);@import url(../scss/icons/themify-icons/themify-icons.css);@import url(../scss/icons/flag-icon-css/flag-icon.min.css);@import url(../scss/icons/material-design-iconic-font/css/materialdesignicons.min.css);@import url(../css/spinners.css);@import url(../css/animate.css);*{outline:none;}body{background:#fff;font-family:"Montserrat", sans-serif;margin:0;overflow-x:hidden;color:#67757c;font-weight:300;}html{position:relative;min-height:100%;background:#ffffff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}@media (min-width: 768px){}@media (max-width: 767px){}</style><link href="./assets/css/style.css" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="./assets/css/style.css"></noscript>
+  <!-- You can change the theme colors from here -->
+  <link id="theme" rel="stylesheet">
 
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+<link rel="stylesheet" href="styles.ba836608e03654007c8e.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.ba836608e03654007c8e.css"></noscript></head>
+<body class="fix-header card-no-border fix-sidebar">
 
-        <script>
-            function handleCredentialResponse(response) {
-                    console.log("Encoded JWT ID token: " + response.credential);
-                    //console.log(google.accounts.disableAutoSelect); 
-            }
+  <!-- ============================================================== -->
+  <!-- Preloader - style you can find in spinners.css -->
+  <!-- ============================================================== -->
+  <div class="preloader">
+    <div class="loader">
+      <div class="loader__figure"></div>
+      <p class="loader__label">Admin Pro</p>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- Main wrapper - style you can find in pages.scss -->
+  <!-- ============================================================== -->
 
-        </script>
-    </body>
-</html>
+
+  <app-root></app-root>
+
+<!-- All Jquery -->
+  <!-- ============================================================== -->
+  <script src="./assets/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap tether Core JavaScript -->
+  <script src="./assets/plugins/bootstrap/js/popper.min.js"></script>
+  <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <!-- slimscrollbar scrollbar JavaScript -->
+  <script src="./assets/js/perfect-scrollbar.jquery.min.js"></script>
+  <!--Wave Effects -->
+  <script src="./assets/js/waves.js"></script>
+  <!--Menu sidebar -->
+  <script src="./assets/js/sidebarmenu.js"></script>
+  <!--stickey kit -->
+  <script src="./assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+  <script src="./assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+  <!--Custom JavaScript -->
+  <script src="./assets/js/custom.js"></script>
+  <!-- ============================================================== -->
+
+  <!-- Chartjs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="runtime.fe8de10578b03c0ee2b4.js" defer></script><script src="polyfills.677ce638ba108dcf7e16.js" defer></script><script src="main.68f82771c438ffa1713a.js" defer></script>
+
+</body></html>
